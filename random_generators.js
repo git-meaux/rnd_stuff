@@ -186,16 +186,16 @@ const rndPerson = () => {
 
 const rndPeople = (lenght) => [...new Array(lenght)].map(() => rndPerson());
 
-const rndPersonDetailed = {
-  ID: genID(12),
-  name: rndName(),
-  surname: rndSur(),
-  birthday: rndBday(),
-  gender: getSex(rndName()), // null placeholder
-  nationality: rndEurCountry(),
-  email: null,
-  phonenumber: null,
-};
+// const rndPersonDetailed = {
+//   ID: genID(12),
+//   name: rndName(),
+//   surname: rndSur(),
+//   birthday: rndBday(),
+//   gender: getSex(rndName()), // null placeholder
+//   nationality: rndEurCountry(),
+//   email: null,
+//   phonenumber: null,
+// };
 
 // console.log(rndName(), rndSur());
 // console.log(rndFlt(1.1111, 2048.9999, 4));
