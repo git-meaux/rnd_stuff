@@ -142,12 +142,13 @@ const rndInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 const rndFlt = (min, max, decimals) =>
   parseFloat((Math.random() * (max - min) + min).toFixed(decimals));
 
-const rndName = names[rndInt(0, names.length - 1)];
-const rndSur = surnames[rndInt(0, surnames.length - 1)];
-const rndDay = weekDay[rndInt(0, 6)];
-const rndMonth = month[rndInt(0, 11)];
-const rndEurCountry = country_europe[(rndInt(0), country_europe.length - 1)];
-const rndBday = `${rndInt(1, 30)}/${rndInt(1, 12)}/${rndInt(1940, 2008)}`; // output example: "23/11/1988"
+const rndName = () => names[rndInt(0, names.length - 1)];
+const rndSur = () => surnames[rndInt(0, surnames.length - 1)];
+const rndDay = () => weekDay[rndInt(0, 6)];
+const rndMonth = () => month[rndInt(0, 11)];
+const rndEurCountry = () =>
+  country_europe[(rndInt(0), country_europe.length - 1)];
+const rndBday = () => `${rndInt(1, 30)}/${rndInt(1, 12)}/${rndInt(1940, 2008)}`; // output example: "23/11/1988"
 
 const rndNumArr = (min, max, length) =>
   [...new Array(length)].map(() => rndInt(min, max));
@@ -170,32 +171,37 @@ const genID = (length) =>
 // };
 
 const getSex = () => {
-  return males.includes(rndName) ? "M" : "F";
+  return males.includes(rndName()) ? "M" : "F";
 };
 
-const rndPerson = {
-  ID: genID(12),
-  name: rndName,
-  surname: rndSur,
-  age: rndInt(18, 99),
-  gender: getSex(rndName),
+const rndPerson = () => {
+  return {
+    userID: genID(6),
+    name: rndName(),
+    surname: rndSur(),
+    age: rndInt(18, 99),
+    gender: getSex(rndName()),
+  };
 };
+
+const rndPeople = (lenght) => [...new Array(lenght)].map(() => rndPerson());
 
 const rndPersonDetailed = {
   ID: genID(12),
-  name: rndName,
-  surname: rndSur,
-  birthday: rndBday,
-  gender: getSex(rndName), // null placeholder
-  nationality: rndEurCountry,
+  name: rndName(),
+  surname: rndSur(),
+  birthday: rndBday(),
+  gender: getSex(rndName()), // null placeholder
+  nationality: rndEurCountry(),
   email: null,
   phonenumber: null,
 };
 
-// console.log(rndName, rndSur);
+// console.log(rndName(), rndSur());
 // console.log(rndFlt(1.1111, 2048.9999, 4));
 // console.log(rndInt(20, 30));
 // console.log(rndNumArr(20, 30, 5));
 // console.log(rndNameArr(14));
 // console.log(fakeIDgen(12));
-// console.log(rndPerson);
+// console.log(rndPerson());
+console.log(rndPeople(5));
