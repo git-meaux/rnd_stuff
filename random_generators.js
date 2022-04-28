@@ -200,6 +200,7 @@ const rndPersonDetailed = () => {
     birthday: rndBday(),
     email: `${mailPrefix}@companymail.com`,
     phonenumber: `+31${rndNumArr(0, 9, 9).join("")}`,
+    password: `${genID(4)}-${genID(4)}-${genID(4)}`,
   };
 };
 const rndPplDetailed = (lenght) =>
@@ -213,4 +214,13 @@ const rndPplDetailed = (lenght) =>
 // console.log(fakeIDgen(12));
 // console.log(rndPerson());
 // console.log(rndPeople(5));
-// console.log(rndPplDetailed(5));
+console.log(rndPplDetailed(2));
+module.exports = {
+  rndPplDetailed,
+  rndPeople,
+  rndFlt,
+  rndInt,
+  rndDay,
+  rndBday,
+  rndName,
+};
