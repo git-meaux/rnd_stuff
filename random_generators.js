@@ -170,8 +170,8 @@ const genID = (length) =>
 //   return result;
 // };
 
-const getSex = () => {
-  return males.includes(rndName()) ? "M" : "F";
+const getSex = (name) => {
+  return males.includes(name) ? "M" : "F";
 };
 
 const rndPerson = () => {
@@ -180,22 +180,30 @@ const rndPerson = () => {
     name: rndName(),
     surname: rndSur(),
     age: rndInt(18, 99),
-    gender: getSex(rndName()),
   };
 };
 
 const rndPeople = (lenght) => [...new Array(lenght)].map(() => rndPerson());
 
-// const rndPersonDetailed = {
-//   ID: genID(12),
-//   name: rndName(),
-//   surname: rndSur(),
-//   birthday: rndBday(),
-//   gender: getSex(rndName()), // null placeholder
-//   nationality: rndEurCountry(),
-//   email: null,
-//   phonenumber: null,
-// };
+const rndPersonDetailed = () => {
+  const name = rndName();
+  const surname = rndSur();
+  const mailPrefix = `${name
+    .charAt(0)
+    .toLocaleLowerCase()}.${surname.toLowerCase()}`;
+
+  return {
+    userID: genID(4),
+    name: name,
+    surname: surname,
+    gender: getSex(name),
+    birthday: rndBday(),
+    email: `${mailPrefix}@companymail.com`,
+    phonenumber: `+31${rndNumArr(0, 9, 9).join("")}`,
+  };
+};
+const rndPplDetailed = (lenght) =>
+  [...new Array(lenght)].map(() => rndPersonDetailed());
 
 // console.log(rndName(), rndSur());
 // console.log(rndFlt(1.1111, 2048.9999, 4));
@@ -204,4 +212,5 @@ const rndPeople = (lenght) => [...new Array(lenght)].map(() => rndPerson());
 // console.log(rndNameArr(14));
 // console.log(fakeIDgen(12));
 // console.log(rndPerson());
-console.log(rndPeople(5));
+// console.log(rndPeople(5));
+// console.log(rndPplDetailed(5));
